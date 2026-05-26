@@ -25,7 +25,7 @@ Este é um pipeline de Engenharia de Dados focado na extração, tratamento e ar
 ├── docker-compose.yml     # Definição do container MySQL
 ├── requirements.txt       # Dependências do projeto
 └── main.py                # Orquestrador do pipeline ETL
-```text
+```
 
 ## 🚀 Como Executar o Projeto
 
