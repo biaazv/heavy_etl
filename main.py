@@ -13,13 +13,18 @@ def executar_pipeline():
     try:
         dados_brutos = ler_arquivo_csv(FONTE_DADOS)
 
+        if dados_brutos is None:
+            print(f"Falha na extração de dados")
+            return
+
         if dados_brutos.empty:
             print(f"Não há dados para tratamento")
-        else:
-            dados_tratados = transformar_dados_hevy(dados_brutos)
+            return
+        
+        dados_tratados = transformar_dados_hevy(dados_brutos)
 
-            print(f"Amostra de dados tratados")
-            print(dados_tratados.head())    
+        print(f"Amostra de dados tratados")
+        print(dados_tratados.head())    
         
         engine_banco = obter_conexao_mysql()
         carregar_dados_mysql(dados_tratados, engine_banco, TABELA_DESTINO)
