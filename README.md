@@ -45,3 +45,12 @@ Abra o seu terminal (Prompt de Comando ou PowerShell no Windows) na raiz do proj
 
 ```bash
 docker compose up -d
+```
+
+---
+
+## 🤖 Uso do Jules
+
+Este projeto suporta o uso do agente de codificação Jules. Se você deseja utilizar o Jules e encontrou problemas na instalação (como o erro `npm: command not found`), consulte o nosso tutorial dedicado:
+
+👉 **[Como instalar e configurar o Jules](./JULES_SETUP.md)**
