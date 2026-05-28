@@ -1,8 +1,11 @@
 import pandas as pd
+import logging
+
+logger = logging.getLogger(__name__)
 
 def transformar_dados_hevy(df):
     df_trab = df.copy()
-    print(f"Transforma os dados")
+    logger.info(f"Iniciando transformação dos dados")
 
     # Dicionário para traduzir os meses abreviados no Hevy
     traducao_meses = {
@@ -33,4 +36,5 @@ def transformar_dados_hevy(df):
         df_trab["end_time"], format = mascara_data
     )
 
+    logger.info(f"Transformação concluída com sucesso")
     return df_trab

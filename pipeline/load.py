@@ -1,7 +1,10 @@
 import pandas as pd
+import logging
+
+logger = logging.getLogger(__name__)
 
 def carregar_dados_mysql(df, engine, nome_tabela="series_treino"):
-    print(f"Carrega dados no MySQL")
+    logger.info(f"Iniciando carga de dados no MySQL na tabela: {nome_tabela}")
     #replace usado pois o arquivo de entrada é sempre todo o histórico de treino
     try:
         df.to_sql(
@@ -10,8 +13,7 @@ def carregar_dados_mysql(df, engine, nome_tabela="series_treino"):
             if_exists="replace",
             index=False
         )
-        print(f"Dados carregados com sucesso na tabela {nome_tabela}"
-        )
+        logger.info(f"Dados carregados com sucesso na tabela {nome_tabela}")
     except Exception as e:
-        print(f"Erro ao carregar dados no MySQL: {e}")
+        logger.error(f"Erro ao carregar dados no MySQL: {e}")
         raise e
