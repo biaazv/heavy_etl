@@ -1,4 +1,7 @@
 import pandas as pd
+import logging
+
+logger = logging.getLogger(__name__)
 
 TAXONOMIA_EXERCICIOS = {
     "Extensão de Tríceps na Polia (Máquina)": {"grupo": "Tríceps", "estimulo": "Empurrar"},
@@ -19,7 +22,7 @@ TAXONOMIA_EXERCICIOS = {
 
 def transformar_dados_hevy(df):
     df_trab = df.copy()
-    print(f"Transforma os dados")
+    logger.info(f"Iniciando transformação dos dados")
 
     # Dicionário para traduzir os meses abreviados no Hevy
     traducao_meses = {
@@ -50,24 +53,5 @@ def transformar_dados_hevy(df):
         df_trab["end_time"], format = mascara_data
     )
 
+    logger.info(f"Transformação concluída com sucesso")
     return df_trab
-
-
-def criar_tabela_mapeamento(df):
-    df_bruto = df.copy()
-    print(f"Cria a tabela de mapeamento")
-
-    exercicios_unicos = df_bruto["exercise_title"].unique()
-
-    df_mapa = pd.DataFrame(exercicios_unicos, columns=["exercise_title"])
-    
-    df_mapa['grupo_muscular'] = df_mapa['exercise_title'].map(
-        lambda x: TAXONOMIA_EXERCICIOS.get(x, {}).get('grupo', 'Desconhecido')
-    )
-
-    df_mapa['estimulo'] = df_mapa['exercise_title'].map(
-        lambda x: TAXONOMIA_EXERCICIOS.get(x, {}).get('estimulo', 'Desconhecido')
-    )
-
-    return df_mapa
-          
